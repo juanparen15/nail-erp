@@ -8,7 +8,7 @@ use Filament\Widgets\ChartWidget;
 
 class ServicePopularityWidget extends ChartWidget
 {
-    protected static ?string $heading = 'Servicios más solicitados (este mes)';
+    protected ?string $heading = 'Servicios más solicitados (este mes)';
     protected static ?int $sort = 5;
     protected int|string|array $columnSpan = 1;
 
