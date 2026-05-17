@@ -1,0 +1,35 @@
+{
+    "name": "Kate Nails - Reserva tu cita",
+    "short_name": "Kate Nails",
+    "description": "Reserva tu cita de uñas de forma rápida y sencilla",
+    "start_url": "/reservar",
+    "display": "standalone",
+    "background_color": "#fdf2f8",
+    "theme_color": "#ec4899",
+    "orientation": "portrait-primary",
+    "lang": "es",
+    "icons": [
+        {
+            "src": "/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [],
+    "categories": ["beauty", "lifestyle"],
+    "shortcuts": [
+        {
+            "name": "Reservar cita",
+            "short_name": "Reservar",
+            "url": "/reservar",
+            "icons": [{"src": "/icons/icon-192x192.png", "sizes": "192x192"}]
+        }
+    ]
+}
