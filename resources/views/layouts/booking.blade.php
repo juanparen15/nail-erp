@@ -8,8 +8,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Kate Nails">
     <title>Reservar Cita — Kate Nails</title>
-    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png">
-    <link rel="shortcut icon" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" href="/images/kate-nails-logo.png">
+    <link rel="shortcut icon" href="/images/kate-nails-logo.png">
+    <link rel="apple-touch-icon" href="/images/kate-nails-logo.png">
 
     {{-- Open Graph / WhatsApp preview --}}
     <meta property="og:type"        content="website">
