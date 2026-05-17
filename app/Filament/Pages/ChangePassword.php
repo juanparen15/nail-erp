@@ -2,18 +2,15 @@
 
 namespace App\Filament\Pages;
 
-use Filament\Forms;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Hash;
 
-class ChangePassword extends Page implements HasForms
+class ChangePassword extends Page
 {
-    use InteractsWithForms;
-
     protected string $view = 'filament.pages.change-password';
     protected static bool $shouldRegisterNavigation = false;
     protected static ?string $title = 'Cambiar contraseña';
@@ -25,21 +22,21 @@ class ChangePassword extends Page implements HasForms
         $this->form->fill();
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\Section::make('Actualizar contraseña')
+        return $schema
+            ->components([
+                Section::make('Actualizar contraseña')
                     ->description('Ingresa tu contraseña actual y la nueva para actualizarla.')
                     ->schema([
-                        Forms\Components\TextInput::make('current_password')
+                        TextInput::make('current_password')
                             ->label('Contraseña actual')
                             ->password()
                             ->revealable()
                             ->required()
                             ->currentPassword(),
 
-                        Forms\Components\TextInput::make('password')
+                        TextInput::make('password')
                             ->label('Nueva contraseña')
                             ->password()
                             ->revealable()
@@ -47,14 +44,13 @@ class ChangePassword extends Page implements HasForms
                             ->minLength(8)
                             ->confirmed(),
 
-                        Forms\Components\TextInput::make('password_confirmation')
+                        TextInput::make('password_confirmation')
                             ->label('Confirmar nueva contraseña')
                             ->password()
                             ->revealable()
                             ->required(),
                     ])
-                    ->columns(1)
-                    ->maxWidth('lg'),
+                    ->columns(1),
             ])
             ->statePath('data');
     }

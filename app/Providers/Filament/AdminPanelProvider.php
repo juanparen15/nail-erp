@@ -47,7 +47,7 @@ class AdminPanelProvider extends PanelProvider
                     ->url(fn () => ChangePassword::getUrl()),
             ])
             ->renderHook(
-                'panels::topbar.end',
+                'panels::user-menu.before',
                 fn (): \Illuminate\Contracts\View\View => view('filament.components.home-button'),
             )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
