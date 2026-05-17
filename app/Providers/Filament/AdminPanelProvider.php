@@ -2,8 +2,10 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\AppSettings;
 use App\Filament\Pages\ChangePassword;
 use App\Filament\Pages\Dashboard;
+use App\Filament\Pages\EditProfile;
 use App\Filament\Widgets\AppointmentsCalendarWidget;
 use App\Filament\Widgets\ClientStatsWidget;
 use App\Filament\Widgets\RevenueStatsWidget;
@@ -42,9 +44,19 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('Kate Nails')
             ->userMenuItems([
                 MenuItem::make()
+                    ->label('Editar perfil')
+                    ->icon('heroicon-o-user-circle')
+                    ->url(fn () => EditProfile::getUrl()),
+
+                MenuItem::make()
                     ->label('Cambiar contraseña')
                     ->icon('heroicon-o-key')
                     ->url(fn () => ChangePassword::getUrl()),
+
+                MenuItem::make()
+                    ->label('Ajustes generales')
+                    ->icon('heroicon-o-wrench-screwdriver')
+                    ->url(fn () => AppSettings::getUrl()),
             ])
             ->renderHook(
                 'panels::user-menu.before',

@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\Appointments\Tables;
 
 use App\Models\Appointment;
+use App\Models\AppSetting;
 use App\Notifications\AppointmentCancelled;
+use Filament\Notifications\Notification;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -118,6 +120,22 @@ class AppointmentsTable
                     ->action(function (Appointment $record) {
                         $record->update(['status' => 'completed']);
                         $record->client->incrementVisits();
+
+                        // ── Programa de lealtad ───────────────────────────
+                        $loyaltyOn  = AppSetting::get('loyalty_enabled', '0') === '1';
+                        $threshold  = (int) AppSetting::get('loyalty_threshold', 7);
+
+                        if ($loyaltyOn && $threshold > 0) {
+                            $visits = $record->client->fresh()->total_visits;
+                            if ($visits % $threshold === 0) {
+                                Notification::make()
+                                    ->title('¡Premio de lealtad ganado!')
+                                    ->body("{$record->client->name} completó {$visits} servicios. ¡Su próxima cita es gratis!")
+                                    ->success()
+                                    ->persistent()
+                                    ->send();
+                            }
+                        }
                     }),
 
                 Action::make('cancel')
