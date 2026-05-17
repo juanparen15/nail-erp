@@ -8,6 +8,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TimePicker;
 use Filament\Schemas\Schema;
+use Filament\Support\RawJs;
 
 class AppointmentForm
 {
@@ -37,7 +38,7 @@ class AppointmentForm
                         if ($state) {
                             $service = \App\Models\Service::find($state);
                             if ($service) {
-                                $set('total_price', $service->price);
+                                $set('total_price', number_format((int) $service->price, 0, ',', '.'));
                             }
                         }
                     })
@@ -68,9 +69,12 @@ class AppointmentForm
                     ->columnSpan(1),
 
                 TextInput::make('total_price')
+                    ->label('Precio total')
                     ->required()
-                    ->numeric()
                     ->prefix('$')
+                    ->mask(RawJs::make('$money($input, \',\', \'.\', 0)'))
+                    ->dehydrateStateUsing(fn ($state) => (int) str_replace('.', '', str_replace(',', '', $state ?? '0')))
+                    ->rules(['required', 'min:0'])
                     ->columnSpan(1),
 
                 Textarea::make('notes')

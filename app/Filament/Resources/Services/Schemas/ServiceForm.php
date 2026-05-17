@@ -8,6 +8,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Filament\Support\RawJs;
 
 class ServiceForm
 {
@@ -47,9 +48,10 @@ class ServiceForm
                 TextInput::make('price')
                     ->label('Precio')
                     ->required()
-                    ->numeric()
                     ->prefix('$')
-                    ->minValue(0)
+                    ->mask(RawJs::make('$money($input, \',\', \'.\', 0)'))
+                    ->dehydrateStateUsing(fn ($state) => (int) str_replace('.', '', str_replace(',', '', $state ?? '0')))
+                    ->rules(['required', 'min:0'])
                     ->columnSpan(1),
 
                 ColorPicker::make('color')
