@@ -40,7 +40,6 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Pink,
             ])
             ->brandName('Kate Nails')
-            ->locale('es')
             ->userMenuItems([
                 MenuItem::make()
                     ->label('Cambiar contraseña')
