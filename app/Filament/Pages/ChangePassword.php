@@ -14,7 +14,7 @@ class ChangePassword extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static string $view = 'filament.pages.change-password';
+    protected string $view = 'filament.pages.change-password';
     protected static bool $shouldRegisterNavigation = false;
     protected static ?string $title = 'Cambiar contraseña';
 
