@@ -62,6 +62,10 @@ class AdminPanelProvider extends PanelProvider
                 'panels::user-menu.before',
                 fn (): \Illuminate\Contracts\View\View => view('filament.components.home-button'),
             )
+            ->renderHook(
+                'panels::scripts.before',
+                fn (): string => '<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>',
+            )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
