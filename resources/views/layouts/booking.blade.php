@@ -779,6 +779,16 @@
 
     </div>
 
+    {{-- Botón de acceso al panel administrativo --}}
+    <a href="/admin/login"
+       title="Acceso administrador"
+       style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;display:inline-flex;align-items:center;gap:0.45rem;background:rgba(255,255,255,0.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1.5px solid var(--border-mid);border-radius:50px;padding:0.5rem 1rem 0.5rem 0.75rem;font-family:var(--sans);font-size:0.63rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--rg);text-decoration:none;box-shadow:0 2px 14px rgba(0,0,0,0.07);transition:all 0.22s;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Iniciar sesión
+    </a>
+
     @livewireScripts
     <script>
         function syncStep(step) {

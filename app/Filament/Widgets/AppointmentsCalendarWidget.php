@@ -8,6 +8,8 @@ use Carbon\Carbon;
 
 class AppointmentsCalendarWidget extends ChartWidget
 {
+    protected static ?int $sort = 6;
+    protected int|string|array $columnSpan = 1;
     protected ?string $heading = 'Citas por día (últimas 4 semanas)';
 
     protected function getData(): array
