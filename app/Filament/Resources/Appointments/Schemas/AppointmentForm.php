@@ -73,6 +73,7 @@ class AppointmentForm
                     ->required()
                     ->prefix('$')
                     ->mask(RawJs::make('$money($input, \',\', \'.\', 0)'))
+                    ->formatStateUsing(fn ($state) => $state !== null ? (string) (int) $state : '')
                     ->dehydrateStateUsing(fn ($state) => (int) str_replace('.', '', str_replace(',', '', $state ?? '0')))
                     ->rules(['required', 'min:0'])
                     ->columnSpan(1),
