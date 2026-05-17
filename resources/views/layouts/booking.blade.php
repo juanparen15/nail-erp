@@ -8,6 +8,24 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Kate Nails">
     <title>Reservar Cita — Kate Nails</title>
+
+    {{-- Open Graph / WhatsApp preview --}}
+    <meta property="og:type"        content="website">
+    <meta property="og:site_name"   content="Kate Nails">
+    <meta property="og:title"       content="Reservar Cita — Kate Nails">
+    <meta property="og:description" content="Reserva tu cita de manicure, pedicure y más. Rápido y fácil en línea.">
+    <meta property="og:url"         content="{{ url()->current() }}">
+    <meta property="og:image"       content="{{ url('/icons/icon-512x512.png') }}">
+    <meta property="og:image:width"  content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:locale"      content="es_CO">
+
+    {{-- Twitter / fallback --}}
+    <meta name="twitter:card"        content="summary">
+    <meta name="twitter:title"       content="Reservar Cita — Kate Nails">
+    <meta name="twitter:description" content="Reserva tu cita de manicure, pedicure y más. Rápido y fácil en línea.">
+    <meta name="twitter:image"       content="{{ url('/icons/icon-512x512.png') }}">
+
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
