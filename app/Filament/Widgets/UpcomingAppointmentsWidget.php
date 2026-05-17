@@ -10,7 +10,7 @@ use Filament\Widgets\TableWidget as BaseWidget;
 
 class UpcomingAppointmentsWidget extends BaseWidget
 {
-    protected ?string $heading = 'Próximas citas';
+    protected static ?string $heading = 'Próximas citas';
     protected static ?int $sort = 4;
     protected int|string|array $columnSpan = 'full';
 
