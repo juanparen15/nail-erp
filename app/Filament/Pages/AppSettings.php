@@ -15,7 +15,7 @@ class AppSettings extends Page
 {
     protected string $view = 'filament.pages.app-settings';
 
-    protected static ?string $navigationIcon = 'heroicon-o-wrench-screwdriver';
+    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-wrench-screwdriver';
     protected static ?string $navigationLabel = 'Ajustes generales';
     protected static ?string $title = 'Ajustes generales';
     protected static ?int $navigationSort = 11;
