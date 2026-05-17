@@ -8,6 +8,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Kate Nails">
     <title>Reservar Cita — Kate Nails</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png">
+    <link rel="shortcut icon" href="/icons/icon-192x192.png">
 
     {{-- Open Graph / WhatsApp preview --}}
     <meta property="og:type"        content="website">
@@ -735,6 +737,10 @@
                 <span class="mobile-brand">Kate Nails</span>
                 <span class="mobile-sub">Manicure · Pedicure · Beauty</span>
             </div>
+            <a href="/admin/login" title="Iniciar sesión" style="display:inline-flex;align-items:center;gap:0.35rem;padding:0.4rem 0.75rem;border:1.5px solid var(--border-mid);border-radius:50px;font-family:var(--sans);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--rg);text-decoration:none;white-space:nowrap;flex-shrink:0;">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Ingresar
+            </a>
         </div>
         <div class="mobile-progress-track">
             <div class="mobile-progress-fill" id="progressFill" style="width:25%"></div>
@@ -787,6 +793,10 @@
                 <span class="deco-sparkle">✦ &nbsp; ✦ &nbsp; ✦</span>
                 Manicure · Pedicure · Beauty<br>
                 © {{ date('Y') }} Kate Nails
+                <a href="/admin/login" style="display:inline-flex;align-items:center;justify-content:center;gap:0.3rem;margin-top:0.75rem;font-family:var(--sans);font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-soft);text-decoration:none;opacity:0.55;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.55'">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    Iniciar sesión
+                </a>
             </div>
         </aside>
 
@@ -796,16 +806,6 @@
         </main>
 
     </div>
-
-    {{-- Botón de acceso al panel administrativo --}}
-    <a href="/admin/login"
-       title="Acceso administrador"
-       style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:100;display:inline-flex;align-items:center;gap:0.45rem;background:rgba(255,255,255,0.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1.5px solid var(--border-mid);border-radius:50px;padding:0.5rem 1rem 0.5rem 0.75rem;font-family:var(--sans);font-size:0.63rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--rg);text-decoration:none;box-shadow:0 2px 14px rgba(0,0,0,0.07);transition:all 0.22s;">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-        </svg>
-        Iniciar sesión
-    </a>
 
     @livewireScripts
     <script>
