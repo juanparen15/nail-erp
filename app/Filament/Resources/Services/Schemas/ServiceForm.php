@@ -24,12 +24,21 @@ class ServiceForm
                 Select::make('duration_minutes')
                     ->label('Duración')
                     ->options([
-                        30 => '30 minutos',
-                        45 => '45 minutos',
-                        60 => '1 hora',
-                        75 => '1h 15min',
-                        90 => '1h 30min',
+                        30  => '30 minutos',
+                        45  => '45 minutos',
+                        60  => '1 hora',
+                        75  => '1h 15min',
+                        90  => '1h 30min',
+                        105 => '1h 45min',
                         120 => '2 horas',
+                        135 => '2h 15min',
+                        150 => '2h 30min',
+                        165 => '2h 45min',
+                        180 => '3 horas',
+                        210 => '3h 30min',
+                        240 => '4 horas',
+                        270 => '4h 30min',
+                        300 => '5 horas',
                     ])
                     ->required()
                     ->default(60)
