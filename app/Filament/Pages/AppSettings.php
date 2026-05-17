@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Models\AppSetting;
+use Filament\Actions\Action;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -151,6 +152,16 @@ class AppSettings extends Page
 
             ])
             ->statePath('data');
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Action::make('save')
+                ->label('Guardar ajustes')
+                ->icon('heroicon-m-check')
+                ->action(fn () => $this->save()),
+        ];
     }
 
     public function save(): void

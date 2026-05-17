@@ -8,5 +8,5 @@ class AppointmentsCalendarWidget extends Widget
 {
     protected static ?int $sort = 6;
     protected int|string|array $columnSpan = 'full';
-    protected static string $view = 'filament.widgets.appointments-calendar-widget';
+    protected string $view = 'filament.widgets.appointments-calendar-widget';
 }

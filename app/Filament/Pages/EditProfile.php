@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use Filament\Actions\Action;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
@@ -45,6 +46,16 @@ class EditProfile extends Page
                     ->columns(2),
             ])
             ->statePath('data');
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Action::make('save')
+                ->label('Guardar perfil')
+                ->icon('heroicon-m-check')
+                ->action(fn () => $this->save()),
+        ];
     }
 
     public function save(): void

@@ -2,7 +2,8 @@
 
 namespace App\Filament\Pages;
 
-use Filament\Forms\Components\Section;
+use Filament\Actions\Action;
+use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -53,6 +54,16 @@ class ChangePassword extends Page
                     ->columns(1),
             ])
             ->statePath('data');
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Action::make('save')
+                ->label('Actualizar contraseña')
+                ->icon('heroicon-m-key')
+                ->action(fn () => $this->save()),
+        ];
     }
 
     public function save(): void
