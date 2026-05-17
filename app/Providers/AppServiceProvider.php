@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Channels\WhatsappChannel;
+use App\Models\Appointment;
 use App\Models\AppSetting;
+use App\Observers\AppointmentObserver;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Notification;
@@ -19,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         App::setLocale('es');
+
+        Appointment::observe(AppointmentObserver::class);
 
         Notification::extend('whatsapp', function ($app) {
             return new WhatsappChannel();
