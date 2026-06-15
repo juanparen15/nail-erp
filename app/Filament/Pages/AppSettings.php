@@ -37,6 +37,9 @@ class AppSettings extends Page
             'mail_from_address' => $s['mail_from_address'] ?? config('mail.from.address', ''),
             'mail_from_name'    => $s['mail_from_name']    ?? config('mail.from.name', 'Kate Nails'),
 
+            // ── Notificaciones ────────────────────────────────────────────
+            'admin_notification_email' => $s['admin_notification_email'] ?? ($s['mail_from_address'] ?? ''),
+
             // ── WhatsApp / Twilio ─────────────────────────────────────────
             'twilio_sid'            => $s['twilio_sid']            ?? env('TWILIO_ACCOUNT_SID', ''),
             'twilio_token'          => $s['twilio_token']          ?? '',
@@ -101,6 +104,21 @@ class AppSettings extends Page
                             ->required(),
                     ])
                     ->columns(2)
+                    ->collapsible(),
+
+                // ── Notificaciones ────────────────────────────────────────
+                Section::make('Notificaciones')
+                    ->description('Define a qué correo deseas recibir el aviso cada vez que una clienta registre una cita.')
+                    ->icon('heroicon-o-bell-alert')
+                    ->schema([
+                        TextInput::make('admin_notification_email')
+                            ->label('Correo del administrador')
+                            ->email()
+                            ->placeholder('admin@katenails.com')
+                            ->helperText('Recibirás un correo con los detalles cada vez que se registre una nueva cita. Si lo dejas vacío, se usará el correo remitente.')
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(1)
                     ->collapsible(),
 
                 // ── WhatsApp / Twilio ─────────────────────────────────────

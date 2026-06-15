@@ -3,15 +3,11 @@
 namespace App\Notifications;
 
 use App\Models\Appointment;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AppointmentConfirmed extends Notification implements ShouldQueue
+class AppointmentConfirmed extends Notification
 {
-    use Queueable;
-
     public function __construct(
         public readonly Appointment $appointment
     ) {}
@@ -39,15 +35,19 @@ class AppointmentConfirmed extends Notification implements ShouldQueue
 
         return (new MailMessage)
             ->subject('Cita reservada - ' . $appointment->service->name)
-            ->greeting('¡Hola, ' . $notifiable->name . '!')
-            ->line('Tu cita ha sido reservada exitosamente.')
-            ->line('**Servicio:** ' . $appointment->service->name)
-            ->line('**Fecha:** ' . $date)
-            ->line('**Hora:** ' . $time . ' hrs')
-            ->line('**Total:** $' . number_format($appointment->total_price, 0, ',', '.'))
-            ->line('Tu cita está pendiente de confirmación. Te notificaremos cuando sea confirmada.')
-            ->action('Ver mis citas', url('/reservar'))
-            ->line('¡Gracias por confiar en nosotros!');
+            ->view('emails.appointment-client', [
+                'appointment'    => $appointment,
+                'date'           => $date,
+                'time'           => $time,
+                'headerSubtitle' => '¡Tu reserva fue recibida!',
+                'badge'          => 'Pendiente',
+                'badgeColor'     => '#f59e0b',
+                'greeting'       => '¡Hola, ' . $notifiable->name . '!',
+                'intro'          => 'Tu cita ha sido reservada exitosamente y está pendiente de confirmación. Te notificaremos cuando sea confirmada.',
+                'closing'        => '¡Gracias por confiar en Kate Nails!',
+                'buttonText'     => 'Ver mis citas',
+                'buttonUrl'      => url('/reservar'),
+            ]);
     }
 
     public function toWhatsapp(object $notifiable): array

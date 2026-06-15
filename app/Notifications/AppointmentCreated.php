@@ -14,7 +14,13 @@ class AppointmentCreated extends Notification
 
     public function via(object $notifiable): array
     {
-        return ['database', 'mail'];
+        // On-demand notifications (admin email) → mail only.
+        // Panel users (User model) → bell (database) only.
+        if ($notifiable instanceof \Illuminate\Notifications\AnonymousNotifiable) {
+            return ['mail'];
+        }
+
+        return ['database'];
     }
 
     // ── Filament bell ─────────────────────────────────────────────────────────

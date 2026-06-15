@@ -3,15 +3,11 @@
 namespace App\Notifications;
 
 use App\Models\Appointment;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AppointmentReminder extends Notification implements ShouldQueue
+class AppointmentReminder extends Notification
 {
-    use Queueable;
-
     public function __construct(
         public readonly Appointment $appointment
     ) {}
@@ -34,18 +30,24 @@ class AppointmentReminder extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         $appointment = $this->appointment;
-        $date = \Carbon\Carbon::parse($appointment->appointment_date)->locale('es')->isoFormat('dddd, D [de] MMMM');
+        $date = \Carbon\Carbon::parse($appointment->appointment_date)->locale('es')->isoFormat('dddd, D [de] MMMM [de] YYYY');
         $time = substr($appointment->appointment_time, 0, 5);
 
         return (new MailMessage)
             ->subject('Recordatorio: Tu cita es mañana')
-            ->greeting('¡Hola, ' . $notifiable->name . '!')
-            ->line('Te recordamos que tienes una cita mañana.')
-            ->line('**Servicio:** ' . $appointment->service->name)
-            ->line('**Fecha:** ' . $date)
-            ->line('**Hora:** ' . $time . ' hrs')
-            ->line('Si necesitas cancelar o reagendar, contáctanos lo antes posible.')
-            ->line('¡Hasta mañana!');
+            ->view('emails.appointment-client', [
+                'appointment'    => $appointment,
+                'date'           => $date,
+                'time'           => $time,
+                'headerSubtitle' => 'Recordatorio de tu cita',
+                'badge'          => 'Mañana',
+                'badgeColor'     => '#8b5cf6',
+                'greeting'       => '¡Hola, ' . $notifiable->name . '!',
+                'intro'          => 'Te recordamos que tienes una cita mañana. ¡Te esperamos!',
+                'closing'        => 'Si necesitas cancelar o reagendar, contáctanos lo antes posible. ¡Hasta mañana!',
+                'buttonText'     => 'Ver mis citas',
+                'buttonUrl'      => url('/reservar'),
+            ]);
     }
 
     public function toWhatsapp(object $notifiable): array

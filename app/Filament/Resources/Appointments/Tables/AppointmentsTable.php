@@ -4,7 +4,6 @@ namespace App\Filament\Resources\Appointments\Tables;
 
 use App\Models\Appointment;
 use App\Models\AppSetting;
-use App\Notifications\AppointmentCancelled;
 use Filament\Notifications\Notification;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
@@ -147,14 +146,7 @@ class AppointmentsTable
                     ->modalDescription(fn (Appointment $record) => "Se cancelará la cita de {$record->client->name} y se le notificará por WhatsApp/email.")
                     ->modalSubmitActionLabel('Sí, cancelar cita')
                     ->visible(fn (Appointment $record) => in_array($record->status, ['pending', 'confirmed']))
-                    ->action(function (Appointment $record) {
-                        $record->update(['status' => 'cancelled']);
-                        try {
-                            $record->client->notify(new AppointmentCancelled($record));
-                        } catch (\Exception $e) {
-                            logger()->error($e->getMessage());
-                        }
-                    }),
+                    ->action(fn (Appointment $record) => $record->update(['status' => 'cancelled'])),
 
                 EditAction::make(),
             ])
