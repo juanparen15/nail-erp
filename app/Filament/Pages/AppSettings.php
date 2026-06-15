@@ -123,19 +123,17 @@ class AppSettings extends Page
 
                 // ── WhatsApp / Twilio ─────────────────────────────────────
                 Section::make('WhatsApp — Twilio')
-                    ->description('Credenciales de Twilio para el envío de mensajes de WhatsApp en campañas y notificaciones.')
+                    ->description('Credenciales de Twilio para el envío de mensajes de WhatsApp en campañas y notificaciones. Es opcional: si lo dejas vacío, solo se enviarán notificaciones por correo.')
                     ->icon('heroicon-o-chat-bubble-left-right')
                     ->schema([
                         TextInput::make('twilio_sid')
                             ->label('Account SID')
-                            ->placeholder('ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-                            ->required(),
+                            ->placeholder('ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'),
 
                         TextInput::make('twilio_token')
                             ->label('Auth Token')
                             ->password()
-                            ->revealable()
-                            ->required(),
+                            ->revealable(),
 
                         TextInput::make('twilio_whatsapp_from')
                             ->label('Número de WhatsApp')
